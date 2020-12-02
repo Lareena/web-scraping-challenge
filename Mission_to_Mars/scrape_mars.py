@@ -9,7 +9,6 @@ import pymongo
 urls = {
         'news': 'https://mars.nasa.gov/news/',
         'image': 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars',
-        'weather': 'https://twitter.com/marswxreport?lang=en',
         'facts' : 'https://space-facts.com/mars/',
         'hemi' : 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
 }
@@ -25,7 +24,7 @@ def request_soup(url):
 
 def init_browser():
     # @NOTE: Replace the path with your actual path to the chromedriver
-    executable_path = {"executable_path": "chromedriver"}
+    executable_path = {"executable_path": "chromedriver.exe"}
     return Browser("chrome", **executable_path, headless=False)
 
 
@@ -66,32 +65,7 @@ def scrape():
 
 
 
-    #############################################################
-    # Mars Weather - Scrape section                             #
-    # Get weather tweets information from twitter                #
-        # Retrieve page with the requests module
-    response = requests.get(urls['weather'])
-    # Create BeautifulSoup object; parse with 'html.parser'
-    soup = BeautifulSoup(response.text, 'html.parser')
-
-    tweets = soup.find_all('p', class_="TweetTextSize TweetTextSize--normal js-tweet-text tweet-text")
-
-    # Loop through returned results and match the first tweet that starts with 'Insight sol'
-    for tweet in tweets:
-    # Error handling if there is something wrong with the tweet
-        try:
-            # Create a regular expression to match the first phrase of a tweet about the weather
-            regex = '^InSight sol'
-            # Test is the tweet starts with the regex expression
-            if re.match(regex,tweet.text) is not None:
-                # capture the tweet and exit the for loop
-                weather_data = tweet.text
-                break
-        except AttributeError as e:
-            print(e)
-
-
-
+   
     #############################################################
     # Mars Facts - Scrape section                               #
     # Use pandas to read the html table data on the page into a list of dictionaries
