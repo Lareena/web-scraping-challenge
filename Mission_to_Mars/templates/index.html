@@ -29,23 +29,20 @@
           <div class="col mx-2 p-5">
             <h1 class="display-5 text-info">Latest Mars News Article:</h1>
             <hr>
-            <h2 class="display-5">{{mars_data.news_title}}</h2>
-            <p>{{mars_data.news_paragraph}}</p>
+            <h2 class="display-5">{{mars_data.News_Title}}</h2>
+            <p>{{mars_data.News_Paragraph}}</p>
           </div>
             <div class="container-fluid ">
               <div class="row">
                   <div class="col mx-2 p-5">
                       <h1 class="display-5 text-info">Featured Mars Image of the Day</h1>
                       <hr>
-                      <img src="{{ mars_data.featured_image_url }}" class="float-left mr-3 about-img img-responsive" width="100%" alt="Featured Mars Daily Image">
+                      <img src="{{ 'https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA18048_hires.jpg'
+                      mars_data.featured_image_url }}" class="float-left mr-3 about-img img-responsive" width="100%" alt="Featured Mars Daily Image">
                   </div>
-                  <div class="col-lg-4 my-5 mx-2 p-5 align-self-start">
-                    <div class="card border border-info my-2">
-                      <div class="card-body">
-                        <h3 class="card-title text-info">Current Weather on Mars</h3>
-                      </div>
-                      <div class="col p-3">
-                        <p>{{ mars_data.weather_data }}</p>
+                
+                      
+                        
                       </div>
                       
                     </div>
@@ -86,12 +83,12 @@
                   <div class="card-body">
                   <h3 class="card-title text-info">{{mars_data.hemisphere_image_urls[3].title}}</h3>
                   </div>
-                  <img src="{{mars_data.hemisphere_image_urls[3].image_url }}" class="img-responsive" width="100%" alt="Scatterplot of Latitude vs. Wind Speed">
+                  <img src="{{'https://astrogeology.usgs.gov/cache/images/b3c7c6c9138f57b4756be9b9c43e3a48_valles_marineris_enhanced.tif_full.jpg' }}" class="img-responsive" width="100%" alt="Scatterplot of Latitude vs. Wind Speed">
               </div>
           </div>
             
             
-            
+      
             
             
 

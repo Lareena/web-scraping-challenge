@@ -69,18 +69,18 @@ def scrape():
     #############################################################
     # Mars Facts - Scrape section                               #
     # Use pandas to read the html table data on the page into a list of dictionaries
-    tables = pd.read_html(urls['facts'])
+    df = pd.read_html(urls['facts'])
 
     # Read the first dictionary in the list into a pandas dataframe and name columns
-    df = tables[0]
-    df.columns = ['Parameter', 'Value']
+    mars_df = df[0]
+    mars_df.columns = ['Parameter', 'Value']
 
     # Set the Parameter column to the index
-    df.set_index('Parameter', inplace=True)
+    mars_df.set_index('Parameter', inplace=True)
 
     # Convert the dataframe into an html table, strip the end of line newlines and 
     # write the result to an html file to view 
-    fact_table = df.to_html()
+    fact_table = mars_df.to_html()
     fact_table = fact_table.replace('\n', '')
  
 
@@ -125,10 +125,9 @@ def scrape():
 
     # Initialize mars_data dictionary to hold all scraped values to be entered into mongo db
     mars_data = {
-            'news_title': news_title,
+            'News_Title': news_title,
             'news_paragraph': news_paragraph,
             'featured_image_url': featured_image_url,
-            'weather_data': weather_data,
             'fact_table': fact_table,
             'hemisphere_image_urls': hemisphere_image_urls
     }
